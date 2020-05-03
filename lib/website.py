@@ -7,6 +7,7 @@ from bs4 import BeautifulSoup
 class Amazon:
     def __init__(self, product):
         self.product = product
+        self.price = []
 
     def sendRequest(self):
         headers = json.load(open(os.getcwd()+r"\lib\user_agent.json", "r"))
@@ -18,6 +19,10 @@ class Amazon:
     def searchProduct(self):
         retry = 0 # permet de faire 10 tentatives de scrapping
         while retry < 10:
+            """
+            Faire un findall sur la div qui contient le titre et le prix, ensuite pour chaque div faire
+            un find sur les balise span
+            """
             soup = BeautifulSoup(self.sendRequest().text, "html.parser")
             content = soup.findAll("span", {"class" : "a-size-medium a-color-base a-text-normal"})
             if content == []:
@@ -25,6 +30,7 @@ class Amazon:
             else:
                 for t in content:
                     print(t.getText())
+                    self.price.append({"Nom" : t.getText(), "Prix" : ""})
                 break
 
     
