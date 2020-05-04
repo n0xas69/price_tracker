@@ -1,5 +1,5 @@
 from lib.website import *
 
-test = Amazon("micro onde")
+test = Amazon("stylo 4 couleurs")
 test.searchProduct()
 

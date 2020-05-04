@@ -2,6 +2,7 @@ import requests
 import os
 import json
 import random
+import time
 from bs4 import BeautifulSoup
 
 class Amazon:
@@ -13,6 +14,7 @@ class Amazon:
         headers = json.load(open(os.getcwd()+r"\lib\user_agent.json", "r"))
         header = {"User-agent" : random.choice(headers)}
         url = "https://www.amazon.fr:443/s/ref=nb_sb_noss_1?__mk_fr_FR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&url=search-alias%3Daps&field-keywords="+self.product.replace(" ", "+")
+        time.sleep(1)
         response = requests.request("GET", url, headers=header)
         return response
 
@@ -27,6 +29,7 @@ class Amazon:
             content = soup.findAll("span", {"class" : "a-size-medium a-color-base a-text-normal"})
             if content == []:
                 retry += 1
+                print("failed")
             else:
                 for t in content:
                     print(t.getText())
