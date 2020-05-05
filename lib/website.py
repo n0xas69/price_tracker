@@ -33,7 +33,8 @@ class Amazon:
             else:
                 for t in content:
                     print(t.getText())
-                    self.price.append({"Nom" : t.getText(), "Prix" : ""})
+                    self.price.append(t.getText())
                 break
+        return self.price
 
     
