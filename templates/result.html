@@ -2,6 +2,7 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="static/style.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>CSS3 Search Field</title>
 </head>
 <body class="bg">
@@ -16,7 +17,14 @@
         </form>
         </div><!--main-->
         {% for p in product %}
-        <h2>{{ p }}</h2>
+
+        <div>
+          <h4>{{ p.get("Nom") }}</h4>
+          <p>{{ p.get("Prix") }} euros</p>
+          <a href="{{ p.get('URL') }}">Accéder au produit</a>
+          <hr>
+        </div>
+        
         {% endfor %}
       </div>
 
